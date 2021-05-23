@@ -25,7 +25,7 @@ public class DriveTrain extends SubsystemBase {
 
   /** Creates a new DriveTrain. */
   public DriveTrain() {
-
+    SmartDashboard.putString("Work","created drive train object");
     frontLeft = new CANSparkMax(Constants.DriveTrain.FRONT_LEFT_ID, Constants.DriveTrain.MOTOR_TYPE);
     frontRight = new CANSparkMax(Constants.DriveTrain.FRONT_RIGHT_ID, Constants.DriveTrain.MOTOR_TYPE);
     backLeft = new CANSparkMax(Constants.DriveTrain.BACK_LEFT_ID, Constants.DriveTrain.MOTOR_TYPE);
@@ -36,9 +36,9 @@ public class DriveTrain extends SubsystemBase {
     backRight.follow(frontRight);
 
     frontLeft.setInverted(driveInverted);
-    frontRight.setInverted(driveInverted);
+    frontRight.setInverted(!driveInverted);
     backLeft.setInverted(driveInverted);
-    backRight.setInverted(driveInverted);
+    backRight.setInverted(!driveInverted);
 
     frontLeft.setOpenLoopRampRate(Constants.DriveTrain.OPEN_LOOP_RAMP);
     frontRight.setOpenLoopRampRate(Constants.DriveTrain.OPEN_LOOP_RAMP);

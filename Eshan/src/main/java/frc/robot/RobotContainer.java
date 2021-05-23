@@ -32,11 +32,11 @@ public class RobotContainer {
 
     s_driveTrain = new DriveTrain();
 
-    new RunCommand(
+    s_driveTrain.setDefaultCommand(new RunCommand(
       () -> s_driveTrain.curveDrive(
         OI.getTriggerOutput(driveController), 
         OI.getLeftJoyStickAxis(driveController), 
-        driveController.getXButton()), s_driveTrain);
+        driveController.getXButton()), s_driveTrain));
 
     // Configure the button bindings
     configureButtonBindings();
