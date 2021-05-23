@@ -20,6 +20,7 @@ public class DriveTrain extends SubsystemBase {
   private final CANSparkMax backLeft;
   private final CANSparkMax backRight;
   private final boolean driveInverted = false;
+  private boolean slowMode = false;
 
   private final DifferentialDrive differentialDrive;
 
@@ -36,9 +37,9 @@ public class DriveTrain extends SubsystemBase {
     backRight.follow(frontRight);
 
     frontLeft.setInverted(driveInverted);
-    frontRight.setInverted(!driveInverted);
+    frontRight.setInverted(driveInverted);
     backLeft.setInverted(driveInverted);
-    backRight.setInverted(!driveInverted);
+    backRight.setInverted(driveInverted);
 
     frontLeft.setOpenLoopRampRate(Constants.DriveTrain.OPEN_LOOP_RAMP);
     frontRight.setOpenLoopRampRate(Constants.DriveTrain.OPEN_LOOP_RAMP);
@@ -53,9 +54,17 @@ public class DriveTrain extends SubsystemBase {
 
   public void curveDrive(double linearVelocity, double angularVelocity, boolean isQuickTurn) {
     SmartDashboard.putNumber("linearVelocity", linearVelocity);
-    differentialDrive.curvatureDrive(linearVelocity, angularVelocity, isQuickTurn);
+    SmartDashboard.putBoolean("slowMode", slowMode);
+    if(slowMode) {
+      differentialDrive.curvatureDrive(linearVelocity * Constants.DriveTrain.SLOW_SPEED, angularVelocity, isQuickTurn);
+    } else {
+      differentialDrive.curvatureDrive(linearVelocity, angularVelocity, isQuickTurn);
+    }
   }
-  
+
+  public void toggleSlowMode() {
+    slowMode = !slowMode;
+  }  
 
   @Override
   public void periodic() {
