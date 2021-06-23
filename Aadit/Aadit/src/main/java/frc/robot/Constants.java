@@ -24,4 +24,11 @@ public final class Constants {
         public final static int DRIVE_CONTROLLER = 0;
         public final static int OPERATOR_CONTROLLER = 1;
     }
+    public static class kHopper {
+        public final static int FLOOR_ID = 9;
+        public final static int KICKER_ID = 2;
+        public final static int CONFIG_TIMEOUT = 30;
+        public final static double FLOOR_PERCENT = 0.4;
+        public final static double KICKER_PERCENT = 1;
+    }
 }
