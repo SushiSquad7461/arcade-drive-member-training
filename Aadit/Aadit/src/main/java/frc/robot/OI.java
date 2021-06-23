@@ -17,6 +17,5 @@ public class OI {
         double value = xboxController.getX(GenericHID.Hand.kLeft);
         SmartDashboard.putNumber("Joystick Value", value);
         return value;
-    }
-    
+    }   
 }

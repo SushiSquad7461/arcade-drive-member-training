@@ -16,8 +16,8 @@ public final class Constants {
     public static class kDriveTrain {
         public final static int FRONT_LEFT = 18;
         public final static int FRONT_RIGHT = 15;
-        public final static int BACK_LEFT = 14;
-        public final static int BACK_RIGHT = 1;
+        public final static int BACK_LEFT = 1;
+        public final static int BACK_RIGHT = 14;
         public final static int CURRENT_LIMIT = 35;
     }
     public static class kOI {

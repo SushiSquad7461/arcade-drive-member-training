@@ -25,8 +25,8 @@ public class DriveTrain extends SubsystemBase {
     backRight.restoreFactoryDefaults();
     frontLeft.restoreFactoryDefaults();
     frontRight.restoreFactoryDefaults();
-    backLeft.follow(frontLeft, !inverted);
-    backRight.follow(frontRight, !inverted);
+    backLeft.follow(frontLeft, inverted);
+    backRight.follow(frontRight, inverted);
     
     frontLeft.setSmartCurrentLimit(kDriveTrain.CURRENT_LIMIT);
     frontRight.setSmartCurrentLimit(kDriveTrain.CURRENT_LIMIT);
