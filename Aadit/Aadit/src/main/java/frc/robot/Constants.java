@@ -31,4 +31,10 @@ public final class Constants {
         public final static double FLOOR_PERCENT = 0.4;
         public final static double KICKER_PERCENT = 1;
     }
+    public static class kFlywheel {
+        public final static int LEFT_FLYWHEEL = 13;
+        public final static int RIGHT_FLYWHEEL = 3;
+        public final static double SPEED = 1;
+        public final static int CURRENT_LIMIT = 35;
+    }
 }

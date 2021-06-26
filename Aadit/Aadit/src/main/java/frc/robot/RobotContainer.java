@@ -12,6 +12,7 @@ import frc.robot.subsystems.*;
 import frc.robot.subsystems.superstructure.*;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.RunCommand;
+import edu.wpi.first.wpilibj2.command.StartEndCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 /**
@@ -31,6 +32,7 @@ public class RobotContainer {
 
   // Hopper
   private final Hopper m_hopper = new Hopper();
+  private final Flywheel m_flywheel = new Flywheel();
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -54,7 +56,12 @@ public class RobotContainer {
     new JoystickButton(driveController, XboxController.Button.kB.value)
       .whenPressed(m_hopper::reverseHopper, m_hopper)
       .whenReleased(m_hopper::stopHopper, m_hopper);
-      
+    new JoystickButton(driveController, XboxController.Button.kY.value)
+      .toggleWhenPressed(new StartEndCommand(
+        () -> m_flywheel.zoomFlywheel(),
+        () -> m_flywheel.stopFlywheel(),
+        m_flywheel
+      )); 
   }
 
   /**
