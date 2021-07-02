@@ -36,5 +36,14 @@ public final class Constants {
         public final static int RIGHT_FLYWHEEL = 3;
         public final static double SPEED = 1;
         public final static int CURRENT_LIMIT = 35;
+        public final static double kP = 0;
+        public final static double kD = 0;
+        public final static double kI = 0;
+        public final static double MAX_ACCEL = 60; // Rotations per second^2 (rpm2)
+        public final static double MAX_JERK = 30; // Rotations per second^3 (rpm3)
+        public final static double kS = 0;
+        public final static double kV = 0;
+        public final static double kA = 0;
+        public final static double ERROR_TOL = 0;
     }
 }
