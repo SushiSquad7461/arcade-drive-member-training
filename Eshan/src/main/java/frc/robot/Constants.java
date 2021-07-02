@@ -30,6 +30,10 @@ public final class Constants {
         public static final int OPEN_LOOP_RAMP = 0;
         public static final double SLOW_SPEED = 0.1;
     }
+    public static final class Hopper{
+        public static final int KICKER_ID = 2;
+        public static final int CONFIG_TIMEOUT = 30;
+    }
 
     public static final class OI {
         public static final int driveController = 0;
