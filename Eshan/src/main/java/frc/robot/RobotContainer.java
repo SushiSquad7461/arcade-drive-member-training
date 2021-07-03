@@ -14,7 +14,7 @@ import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.subsystems.*;
 import frc.robot.OI;
-
+import frc.robot.subsystems.superstructure.*;
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
  * "declarative" paradigm, very little robot logic should actually be handled in the {@link Robot}
@@ -24,6 +24,7 @@ import frc.robot.OI;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final DriveTrain s_driveTrain;
+  private final Hopper s_hopper;
   private final XboxController driveController = new XboxController(Constants.OI.driveController);
 
 
@@ -31,6 +32,7 @@ public class RobotContainer {
   public RobotContainer() {
 
     s_driveTrain = new DriveTrain();
+    s_hopper = new Hopper();
 
     s_driveTrain.setDefaultCommand(new RunCommand(
       () -> s_driveTrain.curveDrive(
@@ -50,7 +52,11 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     new JoystickButton(driveController, XboxController.Button.kB.value)
-      .whenPressed(new InstantCommand(s_driveTrain::toggleSlowMode, s_driveTrain));   
+      .whenPressed(new InstantCommand(s_driveTrain::toggleSlowMode, s_driveTrain));  
+    new JoystickButton(driveController, XboxController.Button.kX.value).whenPressed(new RunCommand(s_hopper::startSpit, s_hopper))
+    .whenReleased(new RunCommand(s_hopper::stopSpit, s_hopper));
+    new JoystickButton(driveController, XboxController.Button.kY.value).whenPressed(new RunCommand(s_hopper::reverseSpit, s_hopper))
+    .whenReleased(new RunCommand(s_hopper::stopSpit, s_hopper));
   }
 
   /**
