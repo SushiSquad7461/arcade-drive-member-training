@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.XboxController;
  * <p>It is advised to statically import this class (or one of its inner classes) wherever the
  * constants are needed, to reduce verbosity.
  */
+import frc.robot.subsystems.superstructure.Shooter;
 public final class Constants {
 
 
@@ -34,10 +35,16 @@ public final class Constants {
         public static final int KICKER_ID = 2;
         public static final int CONFIG_TIMEOUT = 30;
     }
+    public static final class Shooter {
+        public static final int SHOOTER_ID = 0;
+    }
 
     public static final class OI {
         public static final int driveController = 0;
         public static final int operatorController = 1;
+
+        public static final CANSparkMaxLowLevel.MotorType MOTOR_TYPE = CANSparkMaxLowLevel.MotorType.kBrushless;
+
 
     }
 }
