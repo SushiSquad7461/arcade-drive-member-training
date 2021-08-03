@@ -15,10 +15,10 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
  */
 public final class Constants {
     public static class kDrivetrain {
-        public static final int FRONT_LEFT_ID = 0;
-        public static final int FRONT_RIGHT_ID = 0;
-        public static final int BACK_LEFT_ID = 0;
-        public static final int BACK_RIGHT_ID = 0;
+        public static final int FRONT_LEFT_ID = 18;
+        public static final int FRONT_RIGHT_ID = 15;
+        public static final int BACK_LEFT_ID = 1;
+        public static final int BACK_RIGHT_ID = 14;
         public static final MotorType MOTOR_TYPE = MotorType.kBrushless;
         public static final boolean DRIVE_INVERTED = false;
         public static final int CURRENT_LIMIT = 25;
