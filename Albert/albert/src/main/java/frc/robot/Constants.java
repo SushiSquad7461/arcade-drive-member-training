@@ -23,4 +23,7 @@ public final class Constants {
         public static final boolean DRIVE_INVERTED = false;
         public static final int CURRENT_LIMIT = 25;
     }
+    public static class kOI{
+        public static final int PORT = 0;
+    }
 }

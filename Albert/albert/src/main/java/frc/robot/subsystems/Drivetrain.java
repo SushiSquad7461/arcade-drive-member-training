@@ -37,6 +37,9 @@ public class Drivetrain extends SubsystemBase {
     differentialDrive = new DifferentialDrive(frontLeft, frontRight);
   }
 
+  public void curveDrive(double linearVelocity, double angularVelocity, boolean isQuickTurn){
+    differentialDrive.curvatureDrive(linearVelocity, angularVelocity, isQuickTurn);
+  }
   
 
 }
