@@ -13,7 +13,6 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.subsystems.*;
-import frc.robot.OI;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -23,21 +22,14 @@ import frc.robot.OI;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  private final DriveTrain s_driveTrain;
-  private final XboxController driveController = new XboxController(Constants.OI.driveController);
-
+  private final XboxController driveController = new XboxController(Constants.kOI.DRIVE_CONTROLLER_PORT);
+  private final Drivetrain drivetrain = new Drivetrain();
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
-
-    s_driveTrain = new DriveTrain();
-
-    s_driveTrain.setDefaultCommand(new RunCommand(
-      () -> s_driveTrain.curveDrive(
-        OI.getTriggerOutput(driveController), 
-        OI.getLeftJoyStickAxis(driveController), 
-        driveController.getXButton()), s_driveTrain));
-
+    drivetrain.setDefaultCommand(new RunCommand(
+      () -> drivetrain.curveDrive(OI.getTriggerOutput(driveController), 
+      OI.getLeftJoystickAxis(driveController), driveController.getXButton()), drivetrain));
     // Configure the button bindings
     configureButtonBindings();
   }

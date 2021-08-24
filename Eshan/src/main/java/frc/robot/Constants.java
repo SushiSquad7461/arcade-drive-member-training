@@ -6,6 +6,7 @@ package frc.robot;
 import com.revrobotics.CANSparkMaxLowLevel;
 
 import edu.wpi.first.wpilibj.XboxController;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;;
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
  * constants. This class should not be used for any other purpose. All constants should be declared
@@ -18,23 +19,19 @@ public final class Constants {
 
 
 
-    public static final class DriveTrain {
-        public static final int FRONT_LEFT_ID = 18;
-        public static final int FRONT_RIGHT_ID = 15;
-        public static final int BACK_LEFT_ID = 14;
-        public static final int BACK_RIGHT_ID = 1;
-
-        public static final CANSparkMaxLowLevel.MotorType MOTOR_TYPE = CANSparkMaxLowLevel.MotorType.kBrushless;
-        
-        public static final int CURRENT_LIMIT = 35;
-        public static final int OPEN_LOOP_RAMP = 0;
-        public static final double SLOW_SPEED = 0.1;
+    public static final class kDrivetrain {
+        public static final int FL_ID = 0;
+        public static final int FR_ID = 0;
+        public static final int BL_ID = 0;
+        public static final int BR_ID = 0;
+        public static final double OPEN_LOOP_RAMP = 0;
+        public static final int CURRENT_LIMIT = 0;
+        public static final MotorType MOTOR_TYPE = MotorType.kBrushless;
     }
 
-    public static final class OI {
-        public static final int driveController = 0;
-        public static final int operatorController = 1;
 
+    public static final class kOI {
+        public static final int DRIVE_CONTROLLER_PORT = 0;
     }
 }
 

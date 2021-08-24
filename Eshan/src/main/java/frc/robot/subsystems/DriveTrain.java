@@ -4,59 +4,40 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Constants;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
 import com.revrobotics.CANSparkMax;
-
+import frc.robot.Constants;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
-public class DriveTrain extends SubsystemBase {
-  
-  private final CANSparkMax frontLeft;
-  private final CANSparkMax frontRight;
-  private final CANSparkMax backLeft;
-  private final CANSparkMax backRight;
+public class Drivetrain extends SubsystemBase {
+  /** Creates a new ExampleSubsystem. */
+  private CANSparkMax frontLeft, frontRight, backLeft, backRight;
   private final boolean driveInverted = false;
+  private DifferentialDrive diffDrive;
 
-  private final DifferentialDrive differentialDrive;
-
-  /** Creates a new DriveTrain. */
-  public DriveTrain() {
-    SmartDashboard.putString("Work","created drive train object");
-    frontLeft = new CANSparkMax(Constants.DriveTrain.FRONT_LEFT_ID, Constants.DriveTrain.MOTOR_TYPE);
-    frontRight = new CANSparkMax(Constants.DriveTrain.FRONT_RIGHT_ID, Constants.DriveTrain.MOTOR_TYPE);
-    backLeft = new CANSparkMax(Constants.DriveTrain.BACK_LEFT_ID, Constants.DriveTrain.MOTOR_TYPE);
-    backRight = new CANSparkMax(Constants.DriveTrain.BACK_RIGHT_ID, Constants.DriveTrain.MOTOR_TYPE);
-
-    differentialDrive = new DifferentialDrive(frontLeft, frontRight);
+  public Drivetrain() {
+    frontLeft = setupController(Constants.kDrivetrain.FL_ID, driveInverted);
+    frontRight = setupController(Constants.kDrivetrain.FR_ID, driveInverted);
+    backLeft = setupController(Constants.kDrivetrain.BL_ID, driveInverted);
+    backRight = setupController(Constants.kDrivetrain.BR_ID, driveInverted);
+    
     backLeft.follow(frontLeft);
     backRight.follow(frontRight);
-
-    frontLeft.setInverted(driveInverted);
-    frontRight.setInverted(!driveInverted);
-    backLeft.setInverted(driveInverted);
-    backRight.setInverted(!driveInverted);
-
-    frontLeft.setOpenLoopRampRate(Constants.DriveTrain.OPEN_LOOP_RAMP);
-    frontRight.setOpenLoopRampRate(Constants.DriveTrain.OPEN_LOOP_RAMP);
-    backLeft.setOpenLoopRampRate(Constants.DriveTrain.OPEN_LOOP_RAMP);
-    backRight.setOpenLoopRampRate(Constants.DriveTrain.OPEN_LOOP_RAMP);
-
-    frontLeft.setSmartCurrentLimit(Constants.DriveTrain.CURRENT_LIMIT);
-    frontRight.setSmartCurrentLimit(Constants.DriveTrain.CURRENT_LIMIT);
-    backLeft.setSmartCurrentLimit(Constants.DriveTrain.CURRENT_LIMIT);
-    backRight.setSmartCurrentLimit(Constants.DriveTrain.CURRENT_LIMIT);
+    diffDrive = new DifferentialDrive(frontLeft, frontRight);
   }
 
-  public void curveDrive(double linearVelocity, double angularVelocity, boolean isQuickTurn) {
-    SmartDashboard.putNumber("linearVelocity", linearVelocity);
-    differentialDrive.curvatureDrive(linearVelocity, angularVelocity, isQuickTurn);
+  public void curveDrive(double linearVelocity, double angularVelocity, boolean quickTurn) {
+    diffDrive.curvatureDrive(linearVelocity, angularVelocity, quickTurn);
   }
-  
 
+  private CANSparkMax setupController(int CANid, boolean isInverted) {
+    CANSparkMax toReturn = new CANSparkMax(CANid, Constants.kDrivetrain.MOTOR_TYPE);
+    toReturn.setInverted(isInverted);
+    toReturn.restoreFactoryDefaults();
+    toReturn.setSmartCurrentLimit(Constants.kDrivetrain.CURRENT_LIMIT);
+    toReturn.setOpenLoopRampRate(Constants.kDrivetrain.OPEN_LOOP_RAMP);
+    return toReturn;
+  }
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
